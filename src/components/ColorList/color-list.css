@@ -1,0 +1,7 @@
+.color-list {
+	margin: 20px;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	gap: 20px;
+	text-align: center;
+}

@@ -1,0 +1,10 @@
+.color-cube {
+	border-radius: 5px;
+	height: 150px;
+	line-height: 150px;
+	color: white;
+}
+
+.clickable:hover {
+	cursor: pointer;
+}

@@ -1,0 +1,17 @@
+.cart-container {
+	text-align: left;
+    margin: 2%;
+}
+
+.palette-namer {
+	border: none;
+    padding: 10px;
+    border-radius: 7px;
+	box-shadow: 2px 2px 4px lightgrey;
+	width: 20%;
+	margin-right: 20px;
+}
+
+.save-palette {
+	margin-bottom: 40px;
+}
