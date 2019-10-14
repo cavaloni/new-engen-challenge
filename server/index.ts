@@ -78,6 +78,7 @@ app.post("/api/user/palettes", (req: any, res: any) => {
 });
 
 app.get("*", (req, res) => {
+	console.log('happens', __dirname)
 	res.sendFile(path.join(__dirname + "../build/index.html"));
 });
 
