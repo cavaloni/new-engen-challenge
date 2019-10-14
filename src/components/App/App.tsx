@@ -28,7 +28,6 @@ const App: React.FC = () => {
 				<Switch>
 					<Route path="/cart">
 						<Cart updateUserColors={updateUserColors} userColors={userColors} />
-						ors
 					</Route>
 					<Route path="/">
 						<ColorSelector

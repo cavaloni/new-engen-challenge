@@ -1,10 +1,14 @@
 import bodyParser from "body-parser";
 import express from "express";
 import path from "path";
-import colors from "./assets/colors";
+import colors from "./colors";
 
 const app = express();
 app.use(bodyParser());
+
+app.use(express.static(path.join(__dirname, "../build")));
+
+const urlPrefix = process.env.NODE_ENV === "production" ? "" : "/api";
 
 // In the interest of time, its a mock DB
 const mockDb: { userColors: string[]; savedPalettes: string[][] } = {
@@ -12,7 +16,7 @@ const mockDb: { userColors: string[]; savedPalettes: string[][] } = {
 	userColors: []
 };
 
-app.get("/api/colors", (req: any, res) => {
+app.get(`${urlPrefix}/colors`, (req: any, res) => {
 	const { page, limit } = req.query;
 
 	const begCount = Number(page) * Number(limit) - Number(limit);
@@ -27,7 +31,7 @@ app.get("/api/colors", (req: any, res) => {
 	);
 });
 
-app.get("/api/user/current", (req: any, res) => {
+app.get(`${urlPrefix}/user/current`, (req: any, res) => {
 	res.send(
 		JSON.stringify({
 			userColors: mockDb.userColors
@@ -35,7 +39,7 @@ app.get("/api/user/current", (req: any, res) => {
 	);
 });
 
-app.post("/api/user/current", (req: any, res: any) => {
+app.post(`${urlPrefix}/user/current`, (req: any, res: any) => {
 	const {
 		body: { color, add }
 	} = req;
@@ -51,7 +55,7 @@ app.post("/api/user/current", (req: any, res: any) => {
 	);
 });
 
-app.get("/api/user/palettes", (req: any, res: any) => {
+app.get(`${urlPrefix}/user/palettes`, (req: any, res: any) => {
 	res.send(
 		JSON.stringify({
 			userPalettes: mockDb.savedPalettes
@@ -59,7 +63,7 @@ app.get("/api/user/palettes", (req: any, res: any) => {
 	);
 });
 
-app.post("/api/user/palettes", (req: any, res: any) => {
+app.post(`${urlPrefix}/user/palettes`, (req: any, res: any) => {
 	const {
 		body: {
 			data: { add, palette, name }
@@ -77,7 +81,7 @@ app.post("/api/user/palettes", (req: any, res: any) => {
 	);
 });
 
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
 	res.sendFile(path.join(__dirname + "/../build/index.html"));
 });
 

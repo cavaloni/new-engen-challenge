@@ -10,7 +10,9 @@ const TopBar: React.FC<IUserColorProps> = props => {
 		<div className="top-bar">
 			<Link className="logo" to="/"></Link>
 			<Link className="cart-icon" to="/cart">
-				<div className="user-colors-bubble">{userColors.length}</div>
+				<div className="user-colors-bubble">
+					{userColors ? userColors.length : 0}
+				</div>
 			</Link>
 		</div>
 	);
